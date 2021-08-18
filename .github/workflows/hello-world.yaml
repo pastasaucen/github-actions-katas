@@ -48,6 +48,6 @@ jobs:
       - build
     steps:
       - name: Build image
-        run: bash ci/build-docker.sh export GIT_COMMIT="GA-$GITHUB_SHA"
+        run: chmod +x ci/build-docker.sh && ./ci/build-docker.sh export GIT_COMMIT="GA-$GITHUB_SHA"
       - name: Push image
-        run: bash ci/push-docker.sh export GIT_COMMIT="GA-$GITHUB_SHA"
+        run: chmod +x ci/push-docker.sh && ./ci/push-docker.sh export GIT_COMMIT="GA-$GITHUB_SHA"
