@@ -22,6 +22,8 @@ jobs:
         with:
           name: code
           path: .
+      - name: Give permissions
+        run: chmod +x ci/unit-test-app.sh
       - name: Test
         run: ./ci/unit-test-app.sh
     needs: clonedown
@@ -35,6 +37,8 @@ jobs:
         with:
           name: code
           path: .
+      - name: Give permissions
+        run: chmod +x ci/build-app.sh
       - name: Build-set
         run: ./ci/build-app.sh
     needs: clonedown
