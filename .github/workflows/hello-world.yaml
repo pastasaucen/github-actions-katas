@@ -62,7 +62,7 @@ jobs:
       - name: Push image
         run: chmod +x ci/push-docker.sh && ./ci/push-docker.sh && export GIT_COMMIT="GA-$GITHUB_SHA"
   componenttest:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted]
     needs: build-and-push-latest
     steps:
       - name: Download a single artifact
