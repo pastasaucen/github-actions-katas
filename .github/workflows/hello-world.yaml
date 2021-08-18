@@ -6,7 +6,7 @@ env:
 jobs:
   clonedown:
     name: Clone-down
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted]
     container: gradle:6-jdk11
     steps:
       - uses: actions/checkout@v2
@@ -17,7 +17,7 @@ jobs:
           path: .
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted]
     container: gradle:6-jdk11
     steps:
       - name: Download a single artifact
@@ -30,7 +30,7 @@ jobs:
     needs: clonedown
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted]
     container: gradle:6-jdk11
     steps:
       - name: Download a single artifact
@@ -47,7 +47,7 @@ jobs:
           path: .
     needs: clonedown
   build-and-push-latest:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted]
     needs:
       - test
       - build
