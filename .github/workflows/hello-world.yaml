@@ -4,13 +4,17 @@ jobs:
   clonedown:
     name: Clone-down
     runs-on: ubuntu-latest
+    container: gradle:6-jdk11
     uses: actions/checkout@v2
   test:
     name: Test
+    runs-on: ubuntu-latest
+    container: gradle:6-jdk11
     run: ./ci/unit-test-app.sh
     needs: clonedown
   build:
     name: Build
+    runs-on: ubuntu-latest
     container: gradle:6-jdk11
     run: ./ci/build-app.sh
     needs: clonedown
