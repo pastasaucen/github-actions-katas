@@ -22,6 +22,7 @@ jobs:
     steps:
       - name: my-step
         run: ./ci/build-app.sh
+      - name: Upload
         uses: actions/upload-artifact@v2
         with:
           name: code
