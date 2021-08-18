@@ -40,6 +40,11 @@ jobs:
           path: .
       - name: Build-set
         run: chmod +x ci/build-app.sh && ./ci/build-app.sh
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-code
+          path: .
     needs: clonedown
   build-and-push-latest:
     runs-on: ubuntu-latest
@@ -47,7 +52,12 @@ jobs:
       - test
       - build
     steps:
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: release-code
+          path: .
       - name: Build image
-        run: chmod +x ci/build-docker.sh && ./ci/build-docker.sh export GIT_COMMIT="GA-$GITHUB_SHA"
+        run: chmod +x ci/build-docker.sh && ./ci/build-docker.sh
       - name: Push image
         run: chmod +x ci/push-docker.sh && ./ci/push-docker.sh export GIT_COMMIT="GA-$GITHUB_SHA"
