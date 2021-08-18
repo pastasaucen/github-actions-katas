@@ -35,6 +35,6 @@ jobs:
         with:
           name: code
           path: .
-      - name: my-step
+      - name: Build-set
         run: ./ci/build-app.sh
     needs: clonedown
