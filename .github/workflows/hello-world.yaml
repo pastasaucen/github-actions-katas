@@ -5,20 +5,23 @@ jobs:
     name: Clone-down
     runs-on: ubuntu-latest
     container: gradle:6-jdk11
-    uses: actions/checkout@v2
+    steps:
+    - uses: actions/checkout@v2
   test:
     name: Test
     runs-on: ubuntu-latest
     container: gradle:6-jdk11
-    run: ./ci/unit-test-app.sh
+    steps:
+      run: ./ci/unit-test-app.sh
     needs: clonedown
   build:
     name: Build
     runs-on: ubuntu-latest
     container: gradle:6-jdk11
-    run: ./ci/build-app.sh
+    steps:
+      run: ./ci/build-app.sh
+      uses: actions/upload-artifact@v2
+      with:
+        name: code
+        path: .
     needs: clonedown
-    uses: actions/upload-artifact@v2
-    with:
-      name: code
-      path: .
